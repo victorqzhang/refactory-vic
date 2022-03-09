@@ -3,8 +3,7 @@ Welcome to the Mercury project!
 
 The Mercury project is created with one primary objective - ``to make software easy to write, read, test, deploy, scale and manage.``
 
-Check out the :doc:`api` section for further information, including
-how to :ref:`installation <installation>` the project.
+Check out the :doc:`api` section for further information.
 
 .. note::
 
