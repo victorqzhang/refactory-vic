@@ -1,12 +1,9 @@
-Welcome to Lumache's documentation!
+Welcome to the Mercury project!
 ===================================
 
-**Lumache** (/lu'make/) is a Python library for cooks and food lovers
-that creates recipes mixing random ingredients.
-It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
-and offers a *simple* and *intuitive* API.
+The Mercury project is created with one primary objective - ``to make software easy to write, read, test, deploy, scale and manage.``
 
-Check out the :doc:`usage` section for further information, including
+Check out the :doc:`api` section for further information, including
 how to :ref:`installation` the project.
 
 .. note::
@@ -17,7 +14,18 @@ Contents
 --------
 
 .. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Introduction
 
-   usage
+   installation
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Developer Guide
+
    api
-Lumache has its documentation hosted on Read the Docs.
+   appendix
+   
+Mercury has its documentation hosted on Read the Docs.
