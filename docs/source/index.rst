@@ -18,6 +18,7 @@ Contents
    :hidden:
    :caption: Introduction
 
+   history
    installation
 
 .. toctree::
