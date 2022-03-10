@@ -27,7 +27,7 @@ Contents
    :hidden:
    :caption: Developer Guide
 
-   Introduction 
+   Introduction <dev-introduction>
    Platform API <platform-api>
    Post Office API <post-office-api>
    Rest Automation <rest-automation>
