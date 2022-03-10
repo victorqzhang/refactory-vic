@@ -17,7 +17,7 @@ Contents
    :hidden:
    :caption: Introduction
 
-   Terminology
+   Terminology <terminology>
    Libraries and Components <library>
    Getting Started <start>
    Compatability <compatability>
