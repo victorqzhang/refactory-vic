@@ -18,6 +18,7 @@ Contents
    :caption: Introduction
 
    Getting Started <start>
+   Architecture <architecture>
    Libraries and Components <library>
    Compatability <compatability>
    Terminology <terminology>
@@ -28,6 +29,13 @@ Contents
    :caption: Developer Guide
 
    Introduction <dev-introduction>
+   Appendix <appendix>
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Features
+
    Platform API <platform-api>
    Post Office API <post-office-api>
    Rest Automation <rest-automation>
@@ -35,6 +43,5 @@ Contents
    Cloud Connectors <connectors>
    Version Control <version-control>
    Multicast <multicast>
-   Appendix <appendix>
    
 Mercury has its documentation hosted on Read the Docs.
