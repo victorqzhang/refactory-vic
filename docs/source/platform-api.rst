@@ -51,12 +51,11 @@ To register a function, you can assign a route name to a function instance. You 
 
 To create a singleton function, set instances to 1.
 
-.. code-block:: java
+``platform.register(String route, LambdaFunction lambda, int instances) throws IOException;``
 
-    platform.register(String route, LambdaFunction lambda, int instances) throws IOException;
+ For example: 
 
-    # e.g.
-    platform.register("hello.world", echo, 20);
+``platform.register("hello.world", echo, 20);``
 
 Register a private function
 ----------------------------
