@@ -17,10 +17,10 @@ Contents
    :hidden:
    :caption: Introduction
 
-   Terminology <terminology>
-   Libraries and Components <library>
    Getting Started <start>
+   Libraries and Components <library>
    Compatability <compatability>
+   Terminology <terminology>
 
 .. toctree::
    :maxdepth: 2
