@@ -6,15 +6,17 @@ Before You Start
 
 If you haven't already, please start a terminal and clone the repository:
 
-``git clone https://github.com/Accenture/mercury.git
-cd mercury``
+::
+    git clone https://github.com/Accenture/mercury.git
+    cd mercury
 
 To get the system up and running, you should compile and build the foundation libraries from sources. This will install the libraries into your ".m2/repository/org/platformlambda" folder.
 
 ``Important`` \- please close all Java applications and web servers in your PC if any. The build process will invoke unit tests that simulate HTTP and websocket servers.
 
-``# start a terminal and go to the mercury sandbox folder
-mvn clean install``
+::
+    # start a terminal and go to the mercury sandbox folder
+    mvn clean install
 
 The platform-core, rest-spring, hazelcast-connector and kafka-connector are libraries and you can rebuild each one individually using ``mvn clean install``
 
@@ -24,17 +26,19 @@ Getting Started
 ----------------
 You can compile the rest-example as a microservices executable like this:
 
-``cd mercury/examples
-cd rest-example
-mvn clean package
-java -jar target/rest-example-2.3.2.jar
-# this will run the rest-example without a cloud connector``
+::
+    cd mercury/examples
+    cd rest-example
+    mvn clean package
+    java -jar target/rest-example-2.3.2.jar
+    # this will run the rest-example without a cloud connector
 
 Try http://127.0.0.1:8083/api/hello/world with a browser.
 
 It will respond with some sample output like this:
 
->>> {
+::
+ {
   "body" : {
     "body" : {
       "accept" : "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",

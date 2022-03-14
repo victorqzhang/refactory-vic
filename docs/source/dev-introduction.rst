@@ -77,14 +77,14 @@ Unlike traditional programming, you call a function by sending an event instead 
 
 To make a service call to a function, you may do the following:
 
-``
-PostOffice po = PostOffice.getInstance();
-EventEnvelope response = po.request("hello.world", 1000, "a test message");
-System.out.println("I got response here..."+response.getBody());
+::
+    PostOffice po = PostOffice.getInstance();
+    EventEnvelope response = po.request("hello.world", 1000, "a test message");
+    System.out.println("I got response here..."+response.getBody());
 
-// the above is an RPC call. For async call, it would be something like this:
-po.send("hello.world", "another message");
-``
+    // the above is an RPC call. For async call, it would be something like this:
+    po.send("hello.world", "another message");
+
 
 You can call the function from another function or a REST endpoint. The latter connects REST API with a microservices function.
 
