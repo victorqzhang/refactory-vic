@@ -6,7 +6,8 @@ Before You Start
 
 If you haven't already, please start a terminal and clone the repository:
 
-::
+.. code-block:: console
+
     git clone https://github.com/Accenture/mercury.git
     cd mercury
 
@@ -14,7 +15,8 @@ To get the system up and running, you should compile and build the foundation li
 
 ``Important`` \- please close all Java applications and web servers in your PC if any. The build process will invoke unit tests that simulate HTTP and websocket servers.
 
-::
+.. code-block:: console
+
     # start a terminal and go to the mercury sandbox folder
     mvn clean install
 
@@ -26,7 +28,8 @@ Getting Started
 ----------------
 You can compile the rest-example as a microservices executable like this:
 
-::
+.. code-block:: console
+
     cd mercury/examples
     cd rest-example
     mvn clean package

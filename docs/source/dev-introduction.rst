@@ -77,7 +77,8 @@ Unlike traditional programming, you call a function by sending an event instead 
 
 To make a service call to a function, you may do the following:
 
-::
+.. code-block:: java
+
     PostOffice po = PostOffice.getInstance();
     EventEnvelope response = po.request("hello.world", 1000, "a test message");
     System.out.println("I got response here..."+response.getBody());
