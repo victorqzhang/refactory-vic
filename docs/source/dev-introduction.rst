@@ -12,9 +12,11 @@ Writing your first microservices function
 Your first function may look like this using Java 1.8 anonymous function syntax:
 
 ``LambdaFunction f = (headers, body, instance) -> {
-	// do some business logic
+	/// do some business logic
 	return something
-};``
+};
+``
+
 
 The easiest way to write your first microservices module is to use either the "lambda-example" or "rest-example" as a template.
 
@@ -89,6 +91,8 @@ You can call the function from another function or a REST endpoint. The latter c
 The following example forwards a request from the REST endpoint ``(GET /api/hello/world)`` to the "hello.world" service. Note that there are basic performance metrics from the response object.
 
 .. code-block:: java
+    :linenos: 
+
     @Path("/hello")
     public class MyRestEndpoint {
 
