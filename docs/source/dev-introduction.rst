@@ -11,12 +11,10 @@ Writing your first microservices function
 
 Your first function may look like this using Java 1.8 anonymous function syntax:
 
-``
-LambdaFunction f = (headers, body, instance) -> {
+``LambdaFunction f = (headers, body, instance) -> {
 	// do some business logic
 	return something
-};
-``
+};``
 
 The easiest way to write your first microservices module is to use either the "lambda-example" or "rest-example" as a template.
 
@@ -39,6 +37,7 @@ In the following example, when the application unit starts, it creates a microse
 Application units are horizontally scalable. Within the application unit, you may specify concurrent "workers". This provides horizontal and verticial scalability respectively.
 
 .. code-block:: java
+    :linenos:
 
     @MainApplication
     public class MainApp implements EntryPoint {
