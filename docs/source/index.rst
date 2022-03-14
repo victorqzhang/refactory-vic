@@ -29,7 +29,8 @@ Contents
    :caption: Developer Guide
 
    Introduction <dev-introduction>
-   Appendix <appendix>
+   Application Properties <app-properties>
+   Reserved Route Names <route-names>
 
 .. toctree::
    :maxdepth: 2
@@ -38,10 +39,11 @@ Contents
 
    Platform API <platform-api>
    Post Office API <post-office-api>
+   Version Control <version-control>
    Rest Automation <rest-automation>
    JAX-RS and WebServlets <jax-rs>
    Cloud Connectors <connectors>
-   Version Control <version-control>
    Multicast <multicast>
+   Additonal Features <additonal-features>
    
 Mercury has its documentation hosted on Read the Docs.
