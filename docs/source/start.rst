@@ -37,31 +37,32 @@ Try http://127.0.0.1:8083/api/hello/world with a browser.
 
 It will respond with some sample output like this:
 
-::
- {
-  "body" : {
+.. code-block:: xml
+
+    {
     "body" : {
-      "accept" : "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-      "accept-encoding" : "gzip, deflate, br",
-      "accept-language" : "en-US,en;q=0.9",
-      "cache-control" : "max-age=0",
-      "connection" : "keep-alive",
-      "host" : "127.0.0.1:8083",
-      "time" : "2018-12-21T16:39:33.546Z",
-      "upgrade-insecure-requests" : "1",
-      "user-agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) ..."
+        "body" : {
+        "accept" : "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+        "accept-encoding" : "gzip, deflate, br",
+        "accept-language" : "en-US,en;q=0.9",
+        "cache-control" : "max-age=0",
+        "connection" : "keep-alive",
+        "host" : "127.0.0.1:8083",
+        "time" : "2018-12-21T16:39:33.546Z",
+        "upgrade-insecure-requests" : "1",
+        "user-agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) ..."
+        },
+        "headers" : {
+        "seq" : "4"
+        },
+        "instance" : 4,
+        "origin" : "2018122170c4d0e80ef94b459763636da74d6b5f"
     },
-    "headers" : {
-      "seq" : "4"
-    },
-    "instance" : 4,
-    "origin" : "2018122170c4d0e80ef94b459763636da74d6b5f"
-  },
-  "execution_time" : 0.298,
-  "headers" : { },
-  "round_trip" : 0.862,
-  "status" : 200
-}
+    "execution_time" : 0.298,
+    "headers" : { },
+    "round_trip" : 0.862,
+    "status" : 200
+    }
 
 The REST endpoint makes a request to the "hello.world" service that echoes back the headers of the HTTP request. The underlying Spring Boot HTTP server has been pre-configured with HTML, JSON and XML message serializers and exception handlers.
 
