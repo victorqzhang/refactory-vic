@@ -186,7 +186,7 @@ However, if you create the topic administratively before running this test app, 
 You may also notice that the Kafka client sets the read offset to the latest pointer. To read from the beginning, you may reset the read offset by adding a parameter "0" after the clientId and groupId in the subscribe statement above.
 
 Work nicely with reactive frameworks
-----------------------------
+-------------------------------------
 
 Mercury provides a stream abstraction that can be used with reactive frameworks.
 
