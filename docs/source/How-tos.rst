@@ -1,5 +1,5 @@
-Introduction
-=============
+Microservices and anonymous function
+-------------------------------------------
 Mercury is all about microservices that are minimalist, event-driven and context bounded.
 
 To this end, we use anonymous functions to encapsulate different domains of business logic and library dependencies.
