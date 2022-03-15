@@ -59,12 +59,12 @@ Contents
    :caption: Features
 
    Platform API <platform-api>
-   Post Office API <post-office-api>
-   Version Control <version-control>
+   Post Office API <post-office-api> 
    Rest Automation <rest-automation>
    JAX-RS and WebServlets <jax-rs>
    Cloud Connectors <connectors>
    Multicast <multicast>
    Additonal Features <additonal-features>
+   Version Control <version-control>
    
 Mercury has its documentation hosted on Read the Docs.
