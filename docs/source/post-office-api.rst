@@ -255,6 +255,7 @@ Retrieve raw data as a Map
 ---------------------------
 
 .. code-block:: java
+
     public Object getRawBody();
 
 Custom PoJo mapping
