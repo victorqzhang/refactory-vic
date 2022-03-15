@@ -28,7 +28,7 @@ Contents
    :hidden:
    :caption: Developer Guide
 
-   Introduction <dev-introduction>
+   Pragmatic Guide <How-tos>
    Application Properties <app-properties>
    Reserved Route Names <route-names>
 
