@@ -1,3 +1,5 @@
+How-Tos
+=============
 Microservices and anonymous function
 -------------------------------------------
 Mercury is all about microservices that are minimalist, event-driven and context bounded.
