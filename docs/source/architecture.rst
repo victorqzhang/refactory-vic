@@ -21,6 +21,7 @@ Built-in distributed tracing
 Avoid going to the network when running in the same process, a huge performance boost for latency critical applications
 Doesn't require all services to adopt, will provide the same benefits to those that do adopt it
 Learn and start coding in less than one hour
+
 Benefits
 
 Developer productivity - both authoring and maintenance
@@ -37,6 +38,7 @@ Plug in your favorite event stream. Popular ones are already supported.
 Multiple eventing patterns supported - pub/sub, broadcast, command, etc.
 REST automation for event-based services
 Built in distributed tracing
+
 Gnarly Use Cases solved with Mercury
 
 Workflows with event-based architecture, utilizing Saga pattern
