@@ -155,25 +155,30 @@ This means the system encapsulates the original pub/sub feature of the underlyin
 
 Example:
 
-// setup your subscriber function
-LambdaFunction myFunction = (headers, body, instance) -> {
-  log.info("Got ---> {}", body);
-  return true;
-};
+.. code-block:: java 
 
-PubSub ps = PubSub.getInstance();
-/*
- * Pub/sub service starts asynchronously.
- * If your runs pub/sub code before the container is completely initialized, 
- * you may want to "waitForProvider" for a few seconds.
- */
-ps.waitForProvider(10); 
-// this creates a topic with one partition
-ps.createTopic("some.kafka.topic", 1); 
-// this subscribe the topic with your function
-ps.subscribe("some.kafka.topic", myFunction, "client-101", "group-101");
-// this publishes an event to the topic
-ps.publish("some.kafka.topic", null, "my test message");
+    // setup your subscriber function
+    LambdaFunction myFunction = (headers, body, instance) -> {
+    log.info("Got ---> {}", body);
+    return true;
+    };
+
+.. code-block:: java
+
+    PubSub ps = PubSub.getInstance();
+    /*
+    * Pub/sub service starts asynchronously.
+    * If your runs pub/sub code before the container is completely initialized, 
+    * you may want to "waitForProvider" for a few seconds.
+    */
+    ps.waitForProvider(10); 
+    // this creates a topic with one partition
+    ps.createTopic("some.kafka.topic", 1); 
+    // this subscribe the topic with your function
+    ps.subscribe("some.kafka.topic", myFunction, "client-101", "group-101");
+    // this publishes an event to the topic
+    ps.publish("some.kafka.topic", null, "my test message");
+
 If you run this application for the first time and you do not see the test message, the kafka topic has just been created when your application starts. Due to racing condition, Kafka would skip the offset and you cannot see the first message. Just restart the application and you will see your test message.
 
 However, if you create the topic administratively before running this test app, your app will always show the first test message. This is a normal Kafka behavior.
@@ -187,28 +192,30 @@ Mercury provides a stream abstraction that can be used with reactive frameworks.
 
 For example, developers using Spring reactor with Mercury may setup a stream between two app modules within the same container or in different containers like this:
 
-// at the producer app container
-ObjectStreamIO producer = new ObjectStreamIO(TIMEOUT_IN_SECONDS);
-ObjectStreamWriter out = producer.getOutputStream();
-out.write("hello"); // you can send text, bytes, Map or PoJo
-out.write("world");
-out.close(); // to indicate end-of-stream
-        
-String streamId = producer.getRoute();
-// deliver the streamId to the consumer using PostOffice
-//
-// at the consumer app container
-ObjectStreamIO consumer = new ObjectStreamIO(streamId);
-ObjectStreamReader in = consumer.getInputStream(TIMEOUT_IN_MILLISECONDS);
-Flux.fromIterable(in).log()
-    .doOnNext((d) -> {
-        // handle data block
-    }).doOnError((e) -> {
-        // handle exception
-    }).doOnComplete(() -> {
-        // handle completion
-        in.close(); // close I/O stream
-    }).subscribeOn(Schedulers.parallel()).subscribe();
+.. code-block: java
+
+    // at the producer app container
+    ObjectStreamIO producer = new ObjectStreamIO(TIMEOUT_IN_SECONDS);
+    ObjectStreamWriter out = producer.getOutputStream();
+    out.write("hello"); // you can send text, bytes, Map or PoJo
+    out.write("world");
+    out.close(); // to indicate end-of-stream
+            
+    String streamId = producer.getRoute();
+    // deliver the streamId to the consumer using PostOffice
+    //
+    // at the consumer app container
+    ObjectStreamIO consumer = new ObjectStreamIO(streamId);
+    ObjectStreamReader in = consumer.getInputStream(TIMEOUT_IN_MILLISECONDS);
+    Flux.fromIterable(in).log()
+        .doOnNext((d) -> {
+            // handle data block
+        }).doOnError((e) -> {
+            // handle exception
+        }).doOnComplete(() -> {
+            // handle completion
+            in.close(); // close I/O stream
+        }).subscribeOn(Schedulers.parallel()).subscribe();
 
 Write your own microservices
 ----------------------------
@@ -232,17 +239,26 @@ Creating a docker image from the executable is easy. First you need to build you
 
 The Dockerfile may look like this:
 
-FROM adoptopenjdk/openjdk11:jre-11.0.11_9-alpine
-EXPOSE 8083
-WORKDIR /app
-COPY target/your-app-name.jar .
-ENTRYPOINT ["java","-jar","your-app-name.jar"]
+.. code-block:: dockerfile
+
+    FROM adoptopenjdk/openjdk11:jre-11.0.11_9-alpine
+    EXPOSE 8083
+    WORKDIR /app
+    COPY target/your-app-name.jar .
+    ENTRYPOINT ["java","-jar","your-app-name.jar"]
+
 To build a new docker image locally:
 
-docker build -t your-app-name:latest .
+.. code-block:: docker
+
+    docker build -t your-app-name:latest .
+
 To run the newly built docker image, try this:
 
-docker run -p 8083:8083 -i -t your-app-name:latest
+.. code-block:: docker
+
+    docker run -p 8083:8083 -i -t your-app-name:latest
+
 Change the exposed port numnber and application name accordingly. Then build the docker image and publish it to a docker registry so you can deploy from there using Kubernetes or alike.
 
 For security reason, you may want to customize the docker file to use non-priliveged Unix user account. Please consult your company's enterprise architecture team for container management policy.
