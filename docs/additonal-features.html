@@ -72,12 +72,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#sending-http-request-body-as-a-stream">Sending HTTP request body as a stream</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#handle-http-response-body-stream">Handle HTTP response body stream</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#content-length-for-http-request">Content length for HTTP request</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#serialization-engines">Serialization engines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gson">Gson</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#msgpack">MsgPack</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#abstraction-layer">Abstraction layer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#custom-json-and-xml-serializers-for-jax-rs-and-spring-boot">Custom JSON and XML serializers for JAX-RS and Spring Boot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#reactive-design">Reactive design</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="version-control.html">Version Control</a></li>
@@ -111,41 +105,53 @@
 <h1>Additonal Features<a class="headerlink" href="#additonal-features" title="Permalink to this headline"></a></h1>
 <section id="admin-endpoints-to-stop-suspend-or-resume">
 <h2>Admin endpoints to stop, suspend or resume<a class="headerlink" href="#admin-endpoints-to-stop-suspend-or-resume" title="Permalink to this headline"></a></h2>
-<p>You can stop, suspend or resume an application instance from a presence monitor.</p>
-<p>Shutdown - stop an application so that the container management system will restart it
-Suspend - tell the application instance not to accept incoming requests
-Resume - tell the application instance to accept incoming requests
-Suspend and resume commands are usually used to simulate error cases for development and regression test purposes.</p>
+<p>You can stop, suspend or resume an application instance from a <code class="docutils literal notranslate"><span class="pre">presence</span> <span class="pre">monitor</span></code>.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Shutdown</span></code> - stop an application so that the container management system will restart it</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Suspend</span></code> - tell the application instance not to accept incoming requests</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Resume</span></code> - tell the application instance to accept incoming requests</p></li>
+</ol>
+<p>Suspend and resume commands are usually used to simulate error cases for development and regression test purposes.</p>
 <p>For example, to simulate a stalled application instance, you can use the “POST /suspend/later” command.</p>
 <p>If you do not want your application instance to receive any service request, you can isolate it with the “POST /suspend/now” command.</p>
-<p>POST /shutdown
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>POST /shutdown
 POST /suspend/{now | later}
-POST /resume/{now | later}</p>
-<p>HTTP request header
-X-App-Instance=origin_id_here</p>
+POST /resume/{now | later}
+
+HTTP request header
+X-App-Instance=origin_id_here
+</pre></div>
+</div>
 </section>
 <section id="actuator-endpoints">
 <h2>Actuator endpoints<a class="headerlink" href="#actuator-endpoints" title="Permalink to this headline"></a></h2>
 <p>The following admin endpoints are available.</p>
-<p>GET /info
-GET /info/routes
-GET /info/lib
-GET /env
-GET /health
-GET /livenessprobe</p>
-<p>Optional HTTP request header
-X-App-Instance=origin_id_here
-If you provide the optional X-App-Instance HTTP header, you can execute the admin endpoint from any application instance using the event stream system.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">GET /info</span>
+<span class="l l-Scalar l-Scalar-Plain">GET /info/routes</span>
+<span class="l l-Scalar l-Scalar-Plain">GET /info/lib</span>
+<span class="l l-Scalar l-Scalar-Plain">GET /env</span>
+<span class="l l-Scalar l-Scalar-Plain">GET /health</span>
+<span class="l l-Scalar l-Scalar-Plain">GET /livenessprobe</span>
+
+<span class="l l-Scalar l-Scalar-Plain">Optional HTTP request header</span>
+<span class="l l-Scalar l-Scalar-Plain">X-App-Instance=origin_id_here</span>
+</pre></div>
+</div>
+<p>If you provide the optional X-App-Instance HTTP header, you can execute the admin endpoint from <code class="docutils literal notranslate"><span class="pre">any</span> <span class="pre">application</span> <span class="pre">instance</span></code> using the event stream system.</p>
 </section>
 <section id="custom-health-services">
 <h2>Custom health services<a class="headerlink" href="#custom-health-services" title="Permalink to this headline"></a></h2>
 <p>You can extend the “/health” endpoint by implementing and registering lambda functions to be added to the health.dependencies.</p>
-<p>mandatory.health.dependencies=cloud.cache.health,cloud.connector.health
-#optional.health.dependencies=other.service.health
-Your custom health service must respond to the following requests:</p>
-<p>Info request (type=info) - it should return a map that includes service name and href (protocol, hostname and port)
-Health check (type=health) - it should return a text string of the health check. e.g. read/write test result. It can throw AppException with status code and error message if health check fails.
-The health service can retrieve the “type” of the request from the “headers”.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mandatory</span><span class="o">.</span><span class="n">health</span><span class="o">.</span><span class="n">dependencies</span><span class="o">=</span><span class="n">cloud</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">health</span><span class="p">,</span><span class="n">cloud</span><span class="o">.</span><span class="n">connector</span><span class="o">.</span><span class="n">health</span>
+<span class="c1">#optional.health.dependencies=other.service.health</span>
+</pre></div>
+</div>
+<p>Your custom health service must respond to the following requests:</p>
+<ol class="arabic simple">
+<li><p>Info request (type=info) - it should return a map that includes service name and href (protocol, hostname and port)</p></li>
+<li><p>Health check (type=health) - it should return a text string of the health check. e.g. read/write test result. It can throw AppException with status code and error message if health check fails.</p></li>
+</ol>
+<p>The health service can retrieve the “type” of the request from the “headers”.</p>
 </section>
 <section id="application-instance-life-cycle-events">
 <h2>Application instance life-cycle events<a class="headerlink" href="#application-instance-life-cycle-events" title="Permalink to this headline"></a></h2>
@@ -282,33 +288,6 @@ The health service can retrieve the “type” of the request from the “header
 <h2>Content length for HTTP request<a class="headerlink" href="#content-length-for-http-request" title="Permalink to this headline"></a></h2>
 <p>Important - Do not set the “content-length” HTTP header because the system will automatically compute the correct content-length for small payload. For large payload, it will use the chunking method.</p>
 <p>The system may use data compression. Manually setting content length for HTTP request body would result in unintended side effects.</p>
-</section>
-<section id="serialization-engines">
-<h2>Serialization engines<a class="headerlink" href="#serialization-engines" title="Permalink to this headline"></a></h2>
-</section>
-<section id="gson">
-<h2>Gson<a class="headerlink" href="#gson" title="Permalink to this headline"></a></h2>
-<p>We are using Gson for its minimalist design.</p>
-<p>We have customized its serialization behavior to be in line with Jackson and other serializers. i.e. Integer and long values are kept without decimal points.</p>
-<p>For backward compatibility with Jackson, we have added the writeValueAsString, writeValueAsBytes and readValue methods. The convertValue method has been consolidated into the readValue method.</p>
-<p>Custom serialization annotations are discouraged.</p>
-</section>
-<section id="msgpack">
-<h2>MsgPack<a class="headerlink" href="#msgpack" title="Permalink to this headline"></a></h2>
-<p>MsgPack is used as the serialization engine from Map to byte array and vice versa because we use Map as the intermediate object for events.</p>
-<p>We use it as a schemaless binary transport for EventEnvelope, a vehicle for event metadata, headers and payload.</p>
-</section>
-<section id="abstraction-layer">
-<h2>Abstraction layer<a class="headerlink" href="#abstraction-layer" title="Permalink to this headline"></a></h2>
-<p>The SimpleMapper and EventEnvelope classes are used to hide the complexity of serialization.</p>
-</section>
-<section id="custom-json-and-xml-serializers-for-jax-rs-and-spring-boot">
-<h2>Custom JSON and XML serializers for JAX-RS and Spring Boot<a class="headerlink" href="#custom-json-and-xml-serializers-for-jax-rs-and-spring-boot" title="Permalink to this headline"></a></h2>
-<p>For the rest-spring project, we have customized JAX-RS, Spring Boot and Servlet serialization and exception handlers for consistency.</p>
-</section>
-<section id="reactive-design">
-<h2>Reactive design<a class="headerlink" href="#reactive-design" title="Permalink to this headline"></a></h2>
-<p>The simplest reactive design is to use the temporary file system as an overflow area for events in case the consumer are slower than the producer.</p>
 </section>
 </section>
 
